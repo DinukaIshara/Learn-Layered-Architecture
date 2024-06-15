@@ -27,23 +27,19 @@ public class PlaceOrderDAOImpl implements PlaceOrderDAO{
                 return false;
             }
 
-            stm = orderDetailDAO.saveOrderDetail(orderDetails,orderId);
-
-            if (stm != 1) {
-                connection.rollback();
-                connection.setAutoCommit(true);
-                return false;
-            }
-
             //Search & Update Item
-            ItemDTO item;
-            boolean pstm;
+            for(OrderDetailDTO detail : orderDetails) {
+                stm = orderDetailDAO.saveOrderDetail(detail,orderId);
 
-            for(OrderDetailDTO orderDetailDTO : orderDetails) {
-                item = itemDAO.findItem(orderDetailDTO.getItemCode());
-                item.setQtyOnHand(item.getQtyOnHand() - orderDetailDTO.getQty());
+                if (stm != 1) {
+                    connection.rollback();
+                    connection.setAutoCommit(true);
+                    return false;
+                }
+                ItemDTO item = itemDAO.findItem(detail.getItemCode());
+                item.setQtyOnHand(item.getQtyOnHand() - detail.getQty());
 
-                pstm = itemDAO.updateItem(item,1);
+                boolean pstm = itemDAO.updateItem(item);
 
                 if (!(pstm)) {
                     connection.rollback();
@@ -51,9 +47,6 @@ public class PlaceOrderDAOImpl implements PlaceOrderDAO{
                     return false;
                 }
             }
-
-
-
             connection.commit();
             connection.setAutoCommit(true);
             return true;

@@ -9,18 +9,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class OrderDetailDAOImpl implements OrderDetailDAO{
-
     @Override
-    public int saveOrderDetail(List<OrderDetailDTO> orderDetailDTO, String orderId) throws SQLException, ClassNotFoundException {
+    public int saveOrderDetail(OrderDetailDTO orderDetailDTO, String orderId) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getDbConnection().getConnection();
         PreparedStatement pstm = connection.prepareStatement("INSERT INTO OrderDetails (oid, itemCode, unitPrice, qty) VALUES (?,?,?,?)");
 
-        for(OrderDetailDTO orderDetail:orderDetailDTO) {
+            System.out.println(orderDetailDTO);
             pstm.setString(1, orderId);
-            pstm.setString(2, orderDetail.getItemCode());
-            pstm.setBigDecimal(3, orderDetail.getUnitPrice());
-            pstm.setInt(4, orderDetail.getQty());
-        }
+            pstm.setString(2, orderDetailDTO.getItemCode());
+            pstm.setBigDecimal(3, orderDetailDTO.getUnitPrice());
+            pstm.setInt(4, orderDetailDTO.getQty());
 
         return pstm.executeUpdate();
     }

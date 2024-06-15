@@ -44,19 +44,7 @@ public class ItemDAOImpl implements ItemDAO {
     }
 
     @Override
-    public void updateItem(ItemDTO item) throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getDbConnection().getConnection();
-        PreparedStatement pstm = connection.prepareStatement("UPDATE Item SET description=?, unitPrice=?, qtyOnHand=? WHERE code=?");
-
-        pstm.setString(1, item.getDescription());
-        pstm.setInt(2, item.getQtyOnHand());
-        pstm.setBigDecimal(3, item.getUnitPrice());
-        pstm.setString(4, item.getCode());
-        pstm.executeUpdate();
-    }
-
-    @Override
-    public boolean updateItem(ItemDTO item, int one) throws SQLException, ClassNotFoundException {
+    public boolean updateItem(ItemDTO item) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getDbConnection().getConnection();
         PreparedStatement pstm = connection.prepareStatement("UPDATE Item SET description=?, unitPrice=?, qtyOnHand=? WHERE code=?");
 
