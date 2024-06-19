@@ -4,7 +4,6 @@ import com.example.layeredarchitecture.dao.SQLUtill;
 import com.example.layeredarchitecture.dao.custom.OrderDetailsDAO;
 import com.example.layeredarchitecture.model.OrderDetailDTO;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
