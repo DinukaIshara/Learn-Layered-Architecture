@@ -2,7 +2,7 @@ package com.example.layeredarchitecture.model;
 
 import java.io.Serializable;
 
-//High Cohesion
+
 public class CustomerDTO implements Serializable {
     private String id;
     private String name;
@@ -11,7 +11,7 @@ public class CustomerDTO implements Serializable {
     public CustomerDTO() {
     }
 
-    public CustomerDTO(String id, String name, String address) { // Constructor Through Injection
+    public CustomerDTO(String id, String name, String address) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -21,7 +21,7 @@ public class CustomerDTO implements Serializable {
         return id;
     }
 
-    public void setId(String id) { // Setter Method Through Injection
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -29,7 +29,7 @@ public class CustomerDTO implements Serializable {
         return name;
     }
 
-    public void setName(String name) { // Setter Method Through Injection
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -37,7 +37,7 @@ public class CustomerDTO implements Serializable {
         return address;
     }
 
-    public void setAddress(String address) { // Setter Method Through Injection
+    public void setAddress(String address) {
         this.address = address;
     }
 

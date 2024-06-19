@@ -23,7 +23,7 @@ public class OrderDTO  {
         this.orderTotal = orderTotal;
     }
 
-    public OrderDTO(String orderId, LocalDate orderDate, String customerId ){
+    public OrderDTO(String orderId, LocalDate orderDate, String customerId) {
         this.orderId = orderId;
         this.orderDate = orderDate;
         this.customerId = customerId;
